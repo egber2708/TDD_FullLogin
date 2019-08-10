@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::post('web/login', 'LoginManualController@create');
+Route::patch('web/login/{user}', 'LoginManualController@update')->where("user",'[0-9]+'); 
 
 Route::get('/home', 'HomeController@index')->name('home');

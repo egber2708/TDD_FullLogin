@@ -6,8 +6,9 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
-class UserTest extends TestCase
+class WebUserTest extends TestCase
 {
     use RefreshDatabase;
     /** @test */
@@ -17,7 +18,7 @@ class UserTest extends TestCase
         $response = $this->post('web/login', [
             "name" => "Egber Insignares",
             "email" => "egber27@hotmail.com",
-            "password" => "rniweoipghwergewnj234ifod4",
+            "password" =>  bcrypt($password = 'i-love-laravel'),
         ]);
         $response->assertStatus(200);
         $this->assertCount(1, User::all());
@@ -71,6 +72,59 @@ class UserTest extends TestCase
     }
 
 
+      /** @test */
+    public function web_manual_login_3()
+    {
+        //
+        
+        $this->post('web/login', [
+            "name" => "Egber Insignares",
+            "email" => "egber27@hotmail.com",
+            "password" =>  bcrypt($password = 'i-love-laravel'),
+        ]);
+       
+        $response = $this->post('/login', [
+            "email" => "egber27@hotmail.com",
+            "password" => $password,
+        ]);
 
+        $response->assertRedirect('home');
+        $this->assertTrue(Auth::check()); 
+        $this->assertEquals("egber27@hotmail.com", Auth::user()->email);
+    } 
+    
 
+     /** @test */
+    public function update_web_user_information_4()
+    {
+      // $this->withoutExceptionHandling();
+ 
+      $this->post('web/login', [
+            "name" => "Egber Insignares",
+            "email" => "egber27@hotmail.com",
+            "password" =>  bcrypt($password = 'i-love-laravel'),
+        ]);
+       
+        $this->post('/login', [
+            "email" => "egber27@hotmail.com",
+            "password" => $password,
+        ]);
+   
+        $user = Auth::user();
+
+        $response = $this->patch('web/login/'.Auth::id(), [
+            "name" =>  "Jorge Cifuentes",
+            "email" => "egber28@hotmail.com",
+            "password" => "prueba satisfactoria",
+        ]);
+       
+        $user =  $user->fresh(); // Actualiza los valores despues de un update
+
+        $response->assertStatus(200);
+        $this->assertEquals("egber28@hotmail.com", $user->email);
+        $this->assertEquals("Jorge Cifuentes", $user->name);
+
+    }
+
+    // Forget PassWord And Email Notification 
 }

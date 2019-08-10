@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\CreateUserPost;
+use App\Http\Requests\UpdateUserPatch;
 
 class LoginManualController extends Controller
 {
@@ -17,6 +18,10 @@ class LoginManualController extends Controller
 
     public function create(CreateUserPost $request){
         User::create($request->only('name','email','password'));
+    }
+
+    public function update(User $user, UpdateUserPatch $request){
+        $user->update($request->only('name','email','password'));
     }
 
 }
