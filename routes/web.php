@@ -21,3 +21,6 @@ Route::post('web/login', 'LoginManualController@create');
 Route::patch('web/login/{user}', 'LoginManualController@update')->where("user",'[0-9]+'); 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('login/{provider}', 'Auth\LoginController@RedirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

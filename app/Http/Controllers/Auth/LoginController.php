@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -36,4 +40,37 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function RedirectToProvider($provider){
+        return Socialite::driver($provider)->redirect();
+    }
+
+
+ 
+
+   public function handleProviderCallback($provider)
+   {
+        try{
+                $userSocial = Socialite::driver($provider)->user();
+            } catch (Exception $e) {
+                abort(403, 'Unauthorized action.');
+                return redirect()->to('/');
+            }
+            $user = User::firstOrCreate(
+                ['provider'    => $provider,
+                 'provider_id' => $userSocial->getId()], 
+                 [
+                    'provider' => $provider,
+                    'provider_id' => $userSocial->getId(),
+                    'name' => $userSocial->getName(),
+                    'nickname'=>$userSocial->getNickname(),
+                    'email' => $userSocial->getEmail(),
+                    'avatar'  => $userSocial->avatar,
+                ]);
+
+            Auth::login($user);
+            return redirect()->to($this->redirectTo);
+   }
+
+
 }

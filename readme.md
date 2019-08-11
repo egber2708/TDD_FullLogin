@@ -6,7 +6,7 @@ In this project i create a login system to integrate with the following conditio
 -A set of feature and unit test.
 -Vue Js Web Login System.
 -Social Login using Google, Facebook, Hotmail or any social media available.
--Include an Api login/system.
+-Include a login with  Api Passport.
 
 ## Configuration:
 

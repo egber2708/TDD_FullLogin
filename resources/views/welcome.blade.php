@@ -81,17 +81,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    LOGIN APP
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="form-group">
+                           <label for="name" class="col-md-4 control-label">Register With Socialite</label>
+                           <div class="col-md-6">
+                               <a href="{{ url('login/facebook') }}" class="btn btn-social-icon btn-facebook">facebook</a>
+                               <a href="{{ url('login/google') }}" class="btn btn-social-icon btn-google-plus">google</i></a>
+                               <a href="{{ url('login/github') }}" class="btn btn-social-icon btn-github">github</a>
+                           </div>
+                       </div>
                 </div>
             </div>
         </div>
