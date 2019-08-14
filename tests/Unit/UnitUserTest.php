@@ -16,9 +16,7 @@ class UnitUserTest extends TestCase
         User::create([
                 "name" => "Egber Insignares",
                 "email" => "egber27@hotmail.com",
-                "email_verified_at" => "egber27@hotmail.com",
                 "password" => "rniweoipghwergewnj234ifod4",
-                "remember_token" => str_random(15),
         ]);
 
         $this->assertCount(1, User::all());

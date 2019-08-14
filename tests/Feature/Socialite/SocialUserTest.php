@@ -16,4 +16,9 @@ class SocialUserTest extends TestCase
         $response->assertStatus(302);
         //$this->assertCount(1, User::all());
     }
+
+
+
+
+    
 }
