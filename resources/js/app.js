@@ -6,7 +6,16 @@
 
 require('./bootstrap');
 
+
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VeeValidate from 'vee-validate';
+
+
 window.Vue = require('vue');
+Vue.use(BootstrapVue);
+Vue.use(VeeValidate);
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +29,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('login-component', require('./components/loginfront/LoginWeb.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
