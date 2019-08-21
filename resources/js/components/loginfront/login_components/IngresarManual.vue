@@ -6,8 +6,8 @@
         <span class="span_login_validation">{{ errors.first('email') }}</span>      
         </div>
         <div class="form-group">
-        <label for="">Password</label>
-        <input v-validate="'required'" name="password" type="password" placeholder="Password" v-model="user.password"  ref="password">
+          <label >Contraseña</label>
+        <input class="form-control" v-validate="'required'" name="password" type="password" placeholder="Password" v-model="user.password"  ref="password">
         <span class="span_login_validation"> {{ errors.first('password') }}</span>       
         </div>
         <div class="form-check">

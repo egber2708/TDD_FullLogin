@@ -78188,7 +78188,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+      _c("label", [_vm._v("Contraseña")]),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -78206,6 +78206,7 @@ var render = function() {
           }
         ],
         ref: "password",
+        staticClass: "form-control",
         attrs: { name: "password", type: "password", placeholder: "Password" },
         domProps: { value: _vm.user.password },
         on: {
